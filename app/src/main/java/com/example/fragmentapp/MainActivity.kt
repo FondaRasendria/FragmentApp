@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : AppCompatActivity(), SendMessage, NavigationBarView.OnItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener{
     lateinit var page: ViewPager
     lateinit var navbar: NavigationBarView
 
@@ -53,14 +53,4 @@ class MainActivity : AppCompatActivity(), SendMessage, NavigationBarView.OnItemS
             Destination.newInstance()
         )
     }
-
-    override fun sendData(message: String?){
-        val tag = "android:switcher:" + R.id.page.toString() + ":" + 1
-        val f = supportFragmentManager.findFragmentByTag(tag) as Destination?
-
-        f!!.displayReceivedData(message!!)
-        var currentItem = getItem(+1)
-        page.currentItem = currentItem
-    }
-    fun getItem(i: Int) = page.currentItem + i
 }
